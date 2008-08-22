@@ -1,9 +1,9 @@
 `clusteredData` <- function(parentData,clusterRowNames,clusterNumber,monoDir){
     newData <-  parentData[clusterRowNames[[1]],]
     ntmp<- list()
-    if(length(unlist(clusterNumber))==1) {
+    if (length(unlist(clusterNumber))==1) {
        ntmp[[1]] <- rep(1,clusterNumber[[1]])
-    }else{
+    } else{
       ntmp[[1]] <- rep(1,clusterNumber[[1]])
       for(k in 2:length(unlist(clusterNumber)) ){
         newData <-  rbind(newData,parentData[clusterRowNames[[k]],])
