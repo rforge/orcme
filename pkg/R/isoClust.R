@@ -35,14 +35,14 @@
       isoMeansClusters <- rbind(incCluster,decCluster)
       return(isoMeansClusters)
     }
-  }else{
+  } else{
     if(isoDir == 'u' ){
       incClusterData <- OCDM(DRdata = incData,alpha = alpha,lambda = lambda,phi = phi )
       incClusterRowNames <- incClusterData$clusterRowNames
       incClusterNumber <-   incClusterData$clusterNrow
       incCluster <- clusteredData(parentData=incData,clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
       return(incCluster)
-    }else if(isoDir == 'd' ){
+    } else if(isoDir == 'd' ){
       decClusterData <- OCDM(DRdata = decData,alpha = alpha,lambda = lambda,phi = phi )
       decClusterRowNames <- decClusterData$clusterRowNames
       decClusterNumber <-   decClusterData$clusterNrow
@@ -53,12 +53,12 @@
       incClusterRowNames <- incClusterData$clusterRowNames
       incClusterNumber <-   incClusterData$clusterNrow
       incCluster <- clusteredData(parentData=incData,clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
-      decClusterData <- OCDM(DRdata = decData,alpha = alpha,lambda = lambda,phi = phi )
+      decClusterData <- OCDM(DRdata = decData, alpha = alpha,lambda = lambda,phi = phi )
       decClusterRowNames <- decClusterData$clusterRowNames
       decClusterNumber <-   decClusterData$clusterNrow
       decCluster <- clusteredData(parentData=decData,clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
       
-      isoMeansClusters <- rbind(incCluster,decCluster)
+      isoMeansClusters <- rbind(incCluster, decCluster)
       return(isoMeansClusters)
     }
     

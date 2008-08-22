@@ -6,7 +6,7 @@ addData2 <- meanSquaredResidueR(arrayData=startData,arrayrepData=repstartData,nD
 
 geneAddition <- addData2$geneResiduals <= addData1$overallHvalue 
 
-addData <- startData[geneAddition  == T, ]
+addData <- startData[geneAddition, ]
 
 Cdata <- rbind(Rdata1,addData)
 

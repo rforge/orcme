@@ -1,5 +1,5 @@
 `isoMean` <-
-function(geneData,doseData){ 
+function(geneData, doseData){ 
   x.res <- doseData
   dat.mat <- as.data.frame(geneData )
   unx <- unique(x.res)
@@ -11,7 +11,7 @@ function(geneData,doseData){
   ud <- cbind(y.is.u,y.is.d)
   iso.dir <- IsoGenem(x.res,as.matrix(dat.mat))[[11]]
   iso.mean <- matrix(0,nrow(geneData) ,length(unique(doseData)))
-  for (i in 1: nrow(geneData) ) {
+  for (i in 1:nrow(geneData)){
     if (iso.dir[i]=="u"){
        iso.mean[i,] <- y.is.u[i,]
     } else {

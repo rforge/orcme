@@ -1,5 +1,4 @@
-`monotoneDirection` <-
-function(geneData, arrayMean, doseData){
+`monotoneDirection` <- function(geneData, arrayMean, doseData){
   geneDataMat <- as.matrix(geneData)
   H1 <- IsoGenem(doseData, geneDataMat)
   gdir <- as.vector(H1$direction)
@@ -9,7 +8,7 @@ function(geneData, arrayMean, doseData){
   genedecData <- geneData [gdir == "d",]
   dirData <- list(incData,decData,geneincData ,genedecData)
   names(dirData)<-c('incData','decData','obsincData','obsdecData')
+  
   return(dirData)
-
 }
 

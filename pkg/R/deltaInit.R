@@ -1,9 +1,8 @@
-`deltaInit` <-
-function(arrayData,lambda){
+`deltaInit` <- function(arrayData,lambda){
+ 
+  initialHvalue <- meanSquaredResidue(arrayData)
+  delta <- lambda * initialHvalue$overallHvalue  
 
-initialHvalue <- meanSquaredResidue(arrayData)
-
-delta <- lambda * initialHvalue$overallHvalue  
-return(delta)
+  return(delta)
 }
 
