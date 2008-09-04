@@ -49,5 +49,12 @@ decreasing profiles, the groups are named \code{d1}, \code{d2}, etc.
 }
 \author{Adetayo Kasim, Tobias Verbeke}
 \seealso{\code{\link{OCDM}}, \code{\link{OCDMR}}}
-% TODO \examples{}
+\examples{
+  data(doseData)
+  data(geneData)
+  incIso <- isoClust(geneData = geneData, doseData = doseData, 
+    alpha = 1.2, lambda = 0.05, phi = 10, isoDir = "up", 
+    includeObserved = FALSE)
+  head(incIso) # cluster membership added as a column
+}
 \keyword{cluster}

@@ -1,0 +1,22 @@
+% 
+\documentclass[a4paper]{article}
+\usepackage[OT1]{fontenc}
+\usepackage{Sweave}
+\begin{document}
+
+\title{Introduction to ORCME}
+\author{Adetayo Kasim}
+
+\maketitle
+
+\section{Introduction}
+
+
+
+\section{Software used}
+
+<<sessionInfo, echo=FALSE, results = tex>>=
+  toLatex(sessionInfo())
+@
+
+\end{document}

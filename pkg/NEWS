@@ -1,0 +1,6 @@
+0.0-2
+	o added simulated data (doseData, geneData)
+	o added example using simulated data
+	o added tests directory with additional examples
+	  for other scenarios
+	o added rudimentary vignette
