@@ -11,6 +11,36 @@
 
 \section{Introduction}
 
+<<loadPkgData>>=
+	library(ORCME)
+  data(doseData)
+  data(geneData)
+@
+
+
+\subsection{Overview of the 10 simulated profiles}
+
+<<fig=TRUE, echo=FALSE>>=
+  geneId <- c(1,11,21,31,41,51,61,71,81,91)
+  isoMeans <- ORCME:::isoMean(geneData, doseData)
+  
+  par(mfrow=c(4,3))
+  for(i in seq(along = geneId)){
+    tmp <- geneData[geneId[i],]
+    isotmp <- isoMeans[geneId[i],]
+    plot(doseData, tmp, xaxt="n",ylab="gene-expression",xlab="Dose")
+    lines(c(1:ncol(isoMeans)), isotmp) 
+    axis(1, at=c(1:5))
+  }
+@
+
+\section{the \texttt{isoClust} function}
+
+<<isoClustEx>>=
+  IsoObs <- isoClust(geneData=geneData,doseData =doseData,alpha=1.2,lambda=0.2,phi=5,isoDir ='both',
+      includeObserved = TRUE)
+  head(IsoObs)
+@
 
 
 \section{Software used}

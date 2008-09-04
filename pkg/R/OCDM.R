@@ -6,7 +6,7 @@
   delta<- deltaInit(arrayData=DDdata, lambda)
   alpha <- alpha
   phi <- phi
-  while(nrow(DDdata) > phi){
+  while (nrow(DDdata) > phi){
     Cdata<-DDdata
 
     ## call multiple node deletions
