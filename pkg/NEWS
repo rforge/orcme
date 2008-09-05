@@ -1,3 +1,8 @@
+0.0-3
+	o added esData (ExpressionSet)
+	o made isoClust an S4 generic
+	o added method ExpressionSet,character
+	o added method matrix,factor
 0.0-2
 	o added simulated data (doseData, geneData)
 	o added example using simulated data
