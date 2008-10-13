@@ -37,15 +37,15 @@
 \section{the \texttt{isoClust} function}
 
 <<isoClustEx>>=
-  IsoObs <- isoClust(geneData=geneData,doseData =doseData,alpha=1.2,lambda=0.2,phi=5,isoDir ='both',
-      includeObserved = TRUE)
+  IsoObs <- isoClust(expression=geneData, dose=doseData, alpha=1.2, lambda=0.2,
+      phi=5, isoDir='both', includeObserved=TRUE)
   head(IsoObs)
 @
 
 
 \section{Software used}
 
-<<sessionInfo, echo=FALSE, results = tex>>=
+<<sessionInfo, echo=FALSE, results=tex>>=
   toLatex(sessionInfo())
 @
 

@@ -4,7 +4,8 @@
 \title{Dose Data Example}
 \description{
   Simulated dose data; a vector of length 20
-  with 4 observations for each of 5 doses.}
+  with 4 observations for each of 5 doses.
+}
 \usage{data(doseData)}
 \format{
   The format is:

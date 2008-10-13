@@ -1,23 +1,31 @@
 \name{isoClust}
+\docType{genericFunction}
 \alias{isoClust}
+\alias{isoClust,matrix,factor-method}
+\alias{isoClust,matrix,numeric-method}
+\alias{isoClust,ExpressionSet,character-method}
 \title{Clustering Algorithm for Dose-Response Data under Monotone Constraints}
 \description{
-  Clustering algorithm for dose response data under monotone constraints. 
-  The algorithm evaluates clusters based on coherence within the cluster 
-  relative to observed heterogeneity within the microarray data. 
-  It is a node-deletion-based algorithm, starting with all the genes and 
-  deleting a gene or group of genes that improves the mean squared residue
-  score for the cluster until the delta or phi criterium is satisfied.
+  This generic function provides a clustering algorithm for dose response data 
+  under monotone constraints. The algorithm evaluates clusters based on 
+  coherence within the cluster relative to observed heterogeneity within 
+  the microarray data. It is a node-deletion-based algorithm, starting with 
+  all the genes and deleting a gene or group of genes that improves the mean 
+  squared residue score for the cluster until the delta or phi criterium is 
+  satisfied.
 }
 \usage{
-isoClust(geneData, doseData, alpha, lambda, phi, isoDir, includeObserved)
+isoClust(expression, dose, ...)
+\S4method{isoClust}{matrix,factor}(expression, dose, alpha, lambda, phi, isoDir, includeObserved)
+\S4method{isoClust}{matrix,numeric}(expression, dose, alpha, lambda, phi, isoDir, includeObserved)
 }
 \arguments{
-  \item{geneData}{A data frame of dose response microarray data, with rows corresponding 
-    to genes and coloumns corresponding to the different doses under which the array were obtained. 
-    The order of the array should be the same as the order of the doses in the 
-    dose data}
-  \item{doseData}{contains information about the doses under which the array was obtained}
+  \item{expression}{dose response microarray data, with rows corresponding 
+    to genes and columns corresponding to the different doses under which 
+    the array were obtained. The order of the array should be the same as 
+    the order of the doses in the dose data}
+  \item{dose}{contains information about the doses under which the array was obtained}
+  \item{\dots}{further arguments passed to the methods}
   \item{alpha}{delta inflating factor for multiple row deletion}
   \item{lambda}{assumed proportion of coherence relative to the observed data, it ranges between 
     0 and 1. A lambda value of 1 considers the observed data as a cluster and lambda value of 0 
@@ -31,7 +39,7 @@ isoClust(geneData, doseData, alpha, lambda, phi, isoDir, includeObserved)
 }
 \details{
   Order-restricted clustering is a node deletion based algorithm. It draws inspiration on the delta 
-  biclustering algorithm of Cheng and Church, 2000)
+  biclustering algorithm of Cheng and Church (2000).
 }
 \value{
 Data frame with input data and one additional column \code{grp}
@@ -52,7 +60,7 @@ decreasing profiles, the groups are named \code{d1}, \code{d2}, etc.
 \examples{
   data(doseData)
   data(geneData)
-  incIso <- isoClust(geneData = geneData, doseData = doseData, 
+  incIso <- isoClust(expression = geneData, dose = doseData, 
     alpha = 1.2, lambda = 0.05, phi = 10, isoDir = "up", 
     includeObserved = FALSE)
   head(incIso) # cluster membership added as a column
