@@ -1,8 +1,8 @@
 Package: ORCME
 Type: Package
 Title: Order Restricted Clustering for Microarray Experiments
-Version: 0.0-5
-Date: 2008-10-13
+Version: 0.0-6
+Date: 2008-10-16
 Author: Adetayo Kasim, Tobias Verbeke
 Maintainer: Adetayo Kasim <adetayo.kasim@uhasselt.be>
 Description: This package provides clustering of genes with similar 

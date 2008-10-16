@@ -13,8 +13,10 @@
   for (i in 1:nrow(geneData)){
     if (iso.dir[i] == "u"){
       iso.mean[i,] <- y.is.u[i,]
+      row.names(iso.mean) <- row.names(geneData)
     } else {
       iso.mean[i,] <- y.is.d[i,]
+      row.names(iso.mean) <- row.names(geneData)
     }
   }
   return(iso.mean)

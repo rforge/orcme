@@ -34,13 +34,13 @@ setMethod("isoClust",
           incClusterData <- OCDMR(repData=repincData ,DRdata = incData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose)
           incClusterRowNames <- incClusterData$clusterRowNames
           incClusterNumber <-  incClusterData$clusterNrow
-          incCluster <- clusteredData(parentData=incData,clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
+          incCluster <- clusteredData(parentData=incData, clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
           return(incCluster)
         } else if( isoDir == 'down' ){
-          decClusterData <- OCDMR(repData=repdecData ,DRdata = decData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
+          decClusterData <- OCDMR(repData=repdecData, DRdata = decData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
           decClusterRowNames <- decClusterData$clusterRowNames
           decClusterNumber <-   decClusterData$clusterNrow
-          decCluster <- clusteredData(parentData=decData,clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
+          decCluster <- clusteredData(parentData=decData, clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
           return(decCluster)
         } else {
           incClusterData <- OCDMR(repData=repincData ,DRdata = incData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
@@ -76,7 +76,9 @@ setMethod("isoClust",
           decClusterData <- OCDM(DRdata = decData, alpha = alpha, lambda = lambda, phi = phi)
           decClusterRowNames <- decClusterData$clusterRowNames
           decClusterNumber <-   decClusterData$clusterNrow
-          decCluster <- clusteredData(parentData=decData,clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
+          decCluster <- clusteredData(parentData=decData, 
+              clusterRowNames=decClusterRowNames, clusterNumber = decClusterNumber,
+              monoDir = 'd')
           
           isoMeansClusters <- rbind(incCluster, decCluster)
           return(isoMeansClusters)

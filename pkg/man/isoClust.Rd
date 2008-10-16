@@ -42,10 +42,10 @@ isoClust(expression, dose, ...)
   biclustering algorithm of Cheng and Church (2000).
 }
 \value{
-Data frame with input data and one additional column \code{grp}
-indicating the group membership. For monotone increasing profiles,
-the groups are named \code{u1}, \code{u2}, etc.; for monotone
-decreasing profiles, the groups are named \code{d1}, \code{d2}, etc.
+  Data frame with input data and one additional column \code{grp}
+  indicating the group membership. For monotone increasing profiles,
+  the groups are named \code{u1}, \code{u2}, etc.; for monotone
+  decreasing profiles, the groups are named \code{d1}, \code{d2}, etc.
 }
 \references{
   Cheng, Y. and Church, G. M. (2000). Biclustering of expression data. In:

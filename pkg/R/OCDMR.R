@@ -22,7 +22,7 @@
   	## remove  identified clusters after row additions
   	cluster2 <- dataReductionR(arrayData=clusterAddRows , startData=Cdata,repstartData=repCdata)
   
-  	clusterRowNames[[iter]]<-as.numeric(row.names(cluster2$clusterMember))
+  	clusterRowNames[[iter]]<- row.names(cluster2$clusterMember)
   	clusterNrow[[iter]]<-nrow(cluster2$clusterMember)
     
     ## remaining data to be clustered

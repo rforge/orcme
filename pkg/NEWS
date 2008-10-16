@@ -1,10 +1,12 @@
+0.0-6
+	o fixed rownames (Tine Casneuf)
 0.0-5
 	o check that dose is character of lenght one 
 	  for ExpressionSet,character-method
 	o added simple test for ExpressionSet,character-method
 0.0-4
 	o removed IsoGene dependency
-    o fixed isoClust S4 methods
+	o fixed isoClust S4 methods
 0.0-3
 	o added esData (ExpressionSet)
 	o made isoClust an S4 generic
