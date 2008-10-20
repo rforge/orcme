@@ -1,7 +1,8 @@
 `monotoneDirection` <- function(geneData, arrayMean, doseData){
   geneDataMat <- as.matrix(geneData)
-  H1 <- IsoGenem(doseData, geneDataMat)
-  gdir <- as.vector(H1$direction)
+  H1 <- isominmax(compData,doseData)
+  gdir <- as.vector(H1$Direction)
+  arrayMean <- H1$isomeans
   incData <- arrayMean [gdir == "u",]
   decData <- arrayMean [gdir == "d",]
   geneincData <- geneData [gdir == "u",]
