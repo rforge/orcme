@@ -42,4 +42,17 @@ IsoObs <- isoClust(expression=geneData,dose=doseData,alpha=1.2,lambda=0.2,phi=5,
 
 IsoObs <- isoClust(expression=esData,dose="dose",alpha=1.2,lambda=0.2,phi=5,isoDir ='both',
     includeObserved = TRUE)
+    
+
+################################################################################
+################# clustering of time trend Data  ########
+################################################################################
+
+###--clustering of time trend Data with replicates
+timeobs <- isoClust(expression=timeGeneData,dose=timeData,alpha=1.2,lambda=0.2,phi=5,isoDir ='up',
+    includeObserved = TRUE,doseResponse=FALSE)
+    
+### clustering of time trend Data without replicates
+timeobs <- isoClust(expression=timeGeneData,dose=timeData,alpha=1.2,lambda=0.2,phi=5,isoDir ='up',
+    includeObserved = FALSE,doseResponse=FALSE)
 
