@@ -91,7 +91,7 @@ isominmax <- function(compData,doseData){
       isomeans[i,]  <-  downcmean.minmax
     }
   }
-    outtmp <- data.frame(Direction = isotmp, isomeans )
-    names(outtmp) <-c("Direction",unique(doseData2))
+    outtmp <- list(isotmp,isomeans)
+    names(outtmp) <-c("Direction","isomeans")
     return(outtmp)
 }
