@@ -11,16 +11,16 @@ data(esData)
 
 ##--  clustering for gene with monotone increasing profiles
 incIso <- isoClust(expression=geneData,dose=doseData,alpha=1.2,lambda=0.05,phi=5,isoDir ='up',
-    includeObserved=FALSE)
+    includeObserved=FALSE,doseResponse=TRUE)
 
 
 ##--  clustering for genes with monotone decreasing profiles
 decIso <- isoClust(expression=geneData,dose=doseData,alpha=1.2,lambda=0.05,phi=5,isoDir ='down',
-    includeObserved = FALSE)
+    includeObserved = FALSE,doseResponse=TRUE)
 
 ##--  clustering under both directions
 Iso <- isoClust(expression=geneData,dose=doseData,alpha=1.2,lambda=0.05,phi=5,isoDir ='both',
-    includeObserved = FALSE)
+    includeObserved = FALSE,doseResponse=TRUE)
 
 ################################################################################
 ################# clustering based on isotonic means and observed data  ########
@@ -28,20 +28,20 @@ Iso <- isoClust(expression=geneData,dose=doseData,alpha=1.2,lambda=0.05,phi=5,is
 
 ##--  clustering for gene with monotone increasing profiles
 incIsoObs <- isoClust(expression=geneData,dose=doseData,alpha=1.2,lambda=0.2,phi=5,isoDir ='up',
-    includeObserved = TRUE)
+    includeObserved = TRUE,doseResponse=TRUE)
 ##--  clustering for genes with monotone decreasing profiles
 decIsoObs <- isoClust(expression=geneData,dose=doseData,alpha=1.2,lambda=0.2,phi=5,isoDir ='down',
-    includeObserved = TRUE)
+    includeObserved = TRUE,doseResponse=TRUE)
 ##--  clustering under both directions
 IsoObs <- isoClust(expression=geneData,dose=doseData,alpha=1.2,lambda=0.2,phi=5,isoDir ='both',
-    includeObserved = TRUE)
+    includeObserved = TRUE,doseResponse=TRUE)
 
 ############################################
 ### using ExpressionSet,character method ###
 ############################################
 
 IsoObs <- isoClust(expression=esData,dose="dose",alpha=1.2,lambda=0.2,phi=5,isoDir ='both',
-    includeObserved = TRUE)
+    includeObserved = TRUE,doseResponse=TRUE)
     
 
 ################################################################################
