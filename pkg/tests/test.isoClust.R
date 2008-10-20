@@ -5,6 +5,8 @@
 library(ORCME)
 data(geneData)
 data(doseData)
+data(timeGeneData)
+data(timeData)
 data(esData)
 
 ##--  clustering for gene with monotone increasing profiles
