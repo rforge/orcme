@@ -16,12 +16,12 @@ setGeneric("isoClust", function(expression, dose, ...){
     standardGeneric("isoClust")
 })    
 
-
 setMethod("isoClust",
     signature = c("matrix", "factor"),
-    function(expression, dose, alpha, lambda, phi, isoDir, includeObserved,doseResponse){
+    function(expression, dose, alpha, lambda, phi, isoDir, includeObserved, doseResponse){
       expression <- data.frame(expression) 
-      nDose <- repDose(doseData = dose) 
+      nDose <- repDose(doseData = dose)
+      
       if(doseResponse) {     
         dirData <- monotoneDirection(geneData = expression,
             doseData = dose)

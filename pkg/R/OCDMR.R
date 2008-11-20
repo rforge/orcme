@@ -32,7 +32,7 @@
   	cat(iter)
   	iter <- iter+1
   }
-  clusterRowNames[[iter]] <- as.numeric(row.names(DDdata))
+  clusterRowNames[[iter]] <- row.names(DDdata)
   clusterNrow[[iter]] <- nrow(DDdata) 
   tmpdata <- list(clusterRowNames,clusterNrow)
   

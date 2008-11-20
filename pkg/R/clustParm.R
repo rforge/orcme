@@ -1,6 +1,7 @@
 
-clusteringParameters <- function(directionDoseSpecificMeans, directionObservedData,includeObserved,nsamp){
-      alpha <- 1.2
+clusteringParameters <- function(directionDoseSpecificMeans, directionObservedData,
+      includeObserved, nsamp){
+      alpha <- 1.2 # TODO make into argument
       directionDoseSpecificMeans <- data.frame(directionDoseSpecificMeans)
       nDose <- repDose(doseData = Trend)
       parkeep <- list()
@@ -21,9 +22,9 @@ clusteringParameters <- function(directionDoseSpecificMeans, directionObservedDa
         }
 
         modelparm <- seq(0.05,0.9,0.05)
-        modelphi <- seq(5,20,5)
-        modelcrit <- matrix(NA,nrow=length(modelparm),ncol=length(modelphi))
-        parlist <- matrix(NA,nrow=length(modelparm),ncol=length(modelphi))
+        modelphi <- seq(5, 20, 5)
+        modelcrit <- matrix(NA, nrow=length(modelparm),ncol=length(modelphi))
+        parlist <- matrix(NA, nrow=length(modelparm),ncol=length(modelphi))
         for( i in 1:length(modelparm)){
           for(j in 1:length(modelphi)){
             if (includeObserved){
@@ -65,7 +66,7 @@ clusteringParameters <- function(directionDoseSpecificMeans, directionObservedDa
   namespar <- names(optprop)
   valuepar <- as.numeric(optprop)
   parameterchoice <- namespar[valuepar == max(valuepar)]
-  tmpout <- list(parameterchoice,optprop)
-  names(tmpout)<- c('parameterchoice','optprop')
+  tmpout <- list(parameterchoice, optprop)
+  names(tmpout)<- c('parameterchoice', 'optprop')
   return(tmpout)
 }
