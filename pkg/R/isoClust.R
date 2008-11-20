@@ -1,34 +1,3 @@
-<<<<<<< .mine
-`isoClust` <-
-    function(geneData, doseData, alpha, lambda, phi, isoDir, includeObserved,doseResponse){
-if (doseResponse){  
-  geneData <- data.frame(geneData)        
-  dirData <- monotoneDirection(geneData = geneData, arrayMean = arrayMean,
-      doseData = doseData)
-  incData <- data.frame(dirData$incData)
-  decData <- data.frame(dirData$decData)
-  repincData <-data.frame(dirData$obsincData)
-  repdecData <-data.frame(dirData$obsdecData) 
-  nDose <- repDose(doseData = doseData)
-  if (includeObserved){
-    if ( isoDir == 'u' ){
-      incClusterData <- OCDMR(repData=repincData ,DRdata = incData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose)
-      incClusterRowNames <- incClusterData$clusterRowNames
-      incClusterNumber <-  incClusterData$clusterNrow
-      incCluster <- clusteredData(parentData=incData,clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
-      return(incCluster)
-    } else if( isoDir == 'd' ){
-      decClusterData <- OCDMR(repData=repdecData ,DRdata = decData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
-      decClusterRowNames <- decClusterData$clusterRowNames
-      decClusterNumber <-   decClusterData$clusterNrow
-      decCluster <- clusteredData(parentData=decData,clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
-      return(decCluster)
-    } else {
-      incClusterData <- OCDMR(repData=repincData ,DRdata = incData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
-      incClusterRowNames <- incClusterData$clusterRowNames
-      incClusterNumber <-   incClusterData$clusterNrow
-      incCluster <- clusteredData(parentData=incData, clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
-=======
 #' Order-Restricted Clustering
 #' 
 #' TODO
@@ -50,43 +19,43 @@ setGeneric("isoClust", function(expression, dose, ...){
 
 setMethod("isoClust",
     signature = c("matrix", "factor"),
-    function(expression, dose, alpha, lambda, phi, isoDir, includeObserved){
-      expression <- data.frame(expression)        
-      arrayMean <- isoMean(expression, dose) 
-      dirData <- monotoneDirection(geneData = expression, arrayMean = arrayMean,
-          doseData = dose)
-      incData <- data.frame(dirData$incData)
-      decData <- data.frame(dirData$decData)
-      repincData <-data.frame(dirData$obsincData)
-      repdecData <-data.frame(dirData$obsdecData) 
-      nDose <- repDose(doseData = dose)
-      if (includeObserved){
-        if ( isoDir == 'up' ){
-          incClusterData <- OCDMR(repData=repincData ,DRdata = incData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose)
-          incClusterRowNames <- incClusterData$clusterRowNames
-          incClusterNumber <-  incClusterData$clusterNrow
-          incCluster <- clusteredData(parentData=incData, clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
-          return(incCluster)
-        } else if( isoDir == 'down' ){
-          decClusterData <- OCDMR(repData=repdecData, DRdata = decData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
-          decClusterRowNames <- decClusterData$clusterRowNames
-          decClusterNumber <-   decClusterData$clusterNrow
-          decCluster <- clusteredData(parentData=decData, clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
-          return(decCluster)
-        } else {
-          incClusterData <- OCDMR(repData=repincData ,DRdata = incData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
-          incClusterRowNames <- incClusterData$clusterRowNames
-          incClusterNumber <-   incClusterData$clusterNrow
-          incCluster <- clusteredData(parentData=incData, clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
+    function(expression, dose, alpha, lambda, phi, isoDir, includeObserved,doseResponse){
+      expression <- data.frame(expression) 
+      nDose <- repDose(doseData = dose) 
+      if(doseResponse) {     
+        dirData <- monotoneDirection(geneData = expression,
+            doseData = dose)
+        incData <- data.frame(dirData$incData)
+        decData <- data.frame(dirData$decData)
+        repincData <-data.frame(dirData$obsincData)
+        repdecData <-data.frame(dirData$obsdecData) 
+        if (includeObserved){
+          if ( isoDir == 'up' ){
+            incClusterData <- OCDMR(repData=repincData ,DRdata = incData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose)
+            incClusterRowNames <- incClusterData$clusterRowNames
+            incClusterNumber <-  incClusterData$clusterNrow
+            incCluster <- clusteredData(parentData=incData, clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
+            return(incCluster)
+          } else if( isoDir == 'down' ){
+            decClusterData <- OCDMR(repData=repdecData, DRdata = decData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
+            decClusterRowNames <- decClusterData$clusterRowNames
+            decClusterNumber <-   decClusterData$clusterNrow
+            decCluster <- clusteredData(parentData=decData, clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
+            return(decCluster)
+          } else {
+            incClusterData <- OCDMR(repData=repincData ,DRdata = incData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
+            incClusterRowNames <- incClusterData$clusterRowNames
+            incClusterNumber <-   incClusterData$clusterNrow
+            incCluster <- clusteredData(parentData=incData, clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
           
-          decClusterData <- OCDMR(repData=repdecData ,DRdata = decData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
-          decClusterRowNames <- decClusterData$clusterRowNames
-          decClusterNumber <-   decClusterData$clusterNrow
-          decCluster <- clusteredData(parentData=incData,clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
-          isoMeansClusters <- rbind(incCluster,decCluster)
-          return(isoMeansClusters)
-        }
-      } else{
+            decClusterData <- OCDMR(repData=repdecData ,DRdata = decData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
+            decClusterRowNames <- decClusterData$clusterRowNames
+            decClusterNumber <-   decClusterData$clusterNrow
+            decCluster <- clusteredData(parentData=incData,clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
+            isoMeansClusters <- rbind(incCluster,decCluster)
+            return(isoMeansClusters)
+          }
+       } else{
         if (isoDir == 'up'){
           incClusterData <- OCDM(DRdata = incData,alpha = alpha,lambda = lambda,phi = phi )
           incClusterRowNames <- incClusterData$clusterRowNames
@@ -115,7 +84,30 @@ setMethod("isoClust",
           return(isoMeansClusters)
         }
       }
-    })
+    }else{
+    if (includeObserved){
+      repincData <- expression
+      incData <- matrix(NA,nrow=nrow(expression),ncol=length(unique(dose)))
+      for(i in 1:nrow(expression)){
+          gene.i <- as.vector(expression[i,])
+          incData[i,] <- tapply(gene.i,dose,mean)
+      }
+      incClusterData <- OCDMR(repData=repincData ,DRdata = incData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose)
+      incClusterRowNames <- incClusterData$clusterRowNames
+      incClusterNumber <-  incClusterData$clusterNrow
+      incCluster <- clusteredData(parentData=incData, clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
+      return(incCluster)
+    }else{
+     incData <- expression
+     incClusterData <- OCDM(DRdata = incData,alpha = alpha,lambda = lambda,phi = phi )
+     incClusterRowNames <- incClusterData$clusterRowNames
+     incClusterNumber <-   incClusterData$clusterNrow
+     incCluster <- clusteredData(parentData=incData,clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
+     return(incCluster)
+} 
+}
+}    
+)
 
 #' isoClust Method for matrix and factor
 #' 
@@ -134,43 +126,43 @@ setMethod("isoClust",
 #' @export
 setMethod("isoClust",
     signature = c("matrix", "numeric"),
-    function(expression, dose, alpha, lambda, phi, isoDir, includeObserved){
-      expression <- data.frame(expression)        
-      arrayMean <- isoMean(expression, dose) 
-      dirData <- monotoneDirection(geneData = expression, arrayMean = arrayMean,
-          doseData = dose)
-      incData <- data.frame(dirData$incData)
-      decData <- data.frame(dirData$decData)
-      repincData <-data.frame(dirData$obsincData)
-      repdecData <-data.frame(dirData$obsdecData) 
-      nDose <- repDose(doseData = dose)
-      if (includeObserved){
-        if ( isoDir == 'up' ){
-          incClusterData <- OCDMR(repData=repincData ,DRdata = incData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose)
-          incClusterRowNames <- incClusterData$clusterRowNames
-          incClusterNumber <-  incClusterData$clusterNrow
-          incCluster <- clusteredData(parentData=incData,clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
-          return(incCluster)
-        } else if( isoDir == 'down' ){
-          decClusterData <- OCDMR(repData=repdecData ,DRdata = decData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
-          decClusterRowNames <- decClusterData$clusterRowNames
-          decClusterNumber <-   decClusterData$clusterNrow
-          decCluster <- clusteredData(parentData=decData,clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
-          return(decCluster)
-        } else {
-          incClusterData <- OCDMR(repData=repincData ,DRdata = incData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
-          incClusterRowNames <- incClusterData$clusterRowNames
-          incClusterNumber <-   incClusterData$clusterNrow
-          incCluster <- clusteredData(parentData=incData, clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
+    function(expression, dose, alpha, lambda, phi, isoDir, includeObserved,doseResponse){
+      expression <- data.frame(expression) 
+      nDose <- repDose(doseData = dose) 
+      if(doseResponse) {     
+        dirData <- monotoneDirection(geneData = expression,
+            doseData = dose)
+        incData <- data.frame(dirData$incData)
+        decData <- data.frame(dirData$decData)
+        repincData <-data.frame(dirData$obsincData)
+        repdecData <-data.frame(dirData$obsdecData) 
+        if (includeObserved){
+          if ( isoDir == 'up' ){
+            incClusterData <- OCDMR(repData=repincData ,DRdata = incData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose)
+            incClusterRowNames <- incClusterData$clusterRowNames
+            incClusterNumber <-  incClusterData$clusterNrow
+            incCluster <- clusteredData(parentData=incData, clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
+            return(incCluster)
+          } else if( isoDir == 'down' ){
+            decClusterData <- OCDMR(repData=repdecData, DRdata = decData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
+            decClusterRowNames <- decClusterData$clusterRowNames
+            decClusterNumber <-   decClusterData$clusterNrow
+            decCluster <- clusteredData(parentData=decData, clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
+            return(decCluster)
+          } else {
+            incClusterData <- OCDMR(repData=repincData ,DRdata = incData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
+            incClusterRowNames <- incClusterData$clusterRowNames
+            incClusterNumber <-   incClusterData$clusterNrow
+            incCluster <- clusteredData(parentData=incData, clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
           
-          decClusterData <- OCDMR(repData=repdecData ,DRdata = decData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
-          decClusterRowNames <- decClusterData$clusterRowNames
-          decClusterNumber <-   decClusterData$clusterNrow
-          decCluster <- clusteredData(parentData=incData,clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
-          isoMeansClusters <- rbind(incCluster,decCluster)
-          return(isoMeansClusters)
-        }
-      } else{
+            decClusterData <- OCDMR(repData=repdecData ,DRdata = decData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
+            decClusterRowNames <- decClusterData$clusterRowNames
+            decClusterNumber <-   decClusterData$clusterNrow
+            decCluster <- clusteredData(parentData=incData,clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
+            isoMeansClusters <- rbind(incCluster,decCluster)
+            return(isoMeansClusters)
+          }
+       } else{
         if (isoDir == 'up'){
           incClusterData <- OCDM(DRdata = incData,alpha = alpha,lambda = lambda,phi = phi )
           incClusterRowNames <- incClusterData$clusterRowNames
@@ -191,12 +183,37 @@ setMethod("isoClust",
           decClusterData <- OCDM(DRdata = decData, alpha = alpha, lambda = lambda, phi = phi)
           decClusterRowNames <- decClusterData$clusterRowNames
           decClusterNumber <-   decClusterData$clusterNrow
-          decCluster <- clusteredData(parentData=decData,clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
+          decCluster <- clusteredData(parentData=decData, 
+              clusterRowNames=decClusterRowNames, clusterNumber = decClusterNumber,
+              monoDir = 'd')
           
           isoMeansClusters <- rbind(incCluster, decCluster)
           return(isoMeansClusters)
         }
       }
+    }else{
+    if (includeObserved){
+      repincData <- expression
+      incData <- matrix(NA,nrow=nrow(expression),ncol=length(unique(dose)))
+      for(i in 1:nrow(expression)){
+          gene.i <- as.vector(expression[i,])
+          incData[i,] <- tapply(gene.i,dose,mean)
+      }
+      incClusterData <- OCDMR(repData=repincData ,DRdata = incData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose)
+      incClusterRowNames <- incClusterData$clusterRowNames
+      incClusterNumber <-  incClusterData$clusterNrow
+      incCluster <- clusteredData(parentData=incData, clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
+      return(incCluster)
+    }else{
+     incData <- expression
+     incClusterData <- OCDM(DRdata = incData,alpha = alpha,lambda = lambda,phi = phi )
+     incClusterRowNames <- incClusterData$clusterRowNames
+     incClusterNumber <-   incClusterData$clusterNrow
+     incCluster <- clusteredData(parentData=incData,clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
+     return(incCluster)
+    }
+  
+  } 
 })
 
 #' 
@@ -214,116 +231,46 @@ setMethod("isoClust",
 #' @export
 setMethod("isoClust",
     signature = c("ExpressionSet", "character"),
-    function(expression, dose, alpha, lambda, phi, isoDir, includeObserved){
-
-      if (length(dose) != 1)
+    function(expression, dose, alpha, lambda, phi, isoDir, includeObserved,doseResponse){
+    if (length(dose) != 1)
         stop("'dose' should be a character vector of length one indicating the name of the phenoData column that contains the dose data")
       dose <- pData(expression)[,dose]
-      expression <- exprs(expression)
->>>>>>> .r14
-      
-<<<<<<< .mine
-      decClusterData <- OCDMR(repData=repdecData ,DRdata = decData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
-      decClusterRowNames <- decClusterData$clusterRowNames
-      decClusterNumber <-   decClusterData$clusterNrow
-      decCluster <- clusteredData(parentData=incData,clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
-      isoMeansClusters <- rbind(incCluster,decCluster)
-      return(isoMeansClusters)
-    }
-  } else{
-    if(isoDir == 'u' ){
-      incClusterData <- OCDM(DRdata = incData,alpha = alpha,lambda = lambda,phi = phi )
-      incClusterRowNames <- incClusterData$clusterRowNames
-      incClusterNumber <-   incClusterData$clusterNrow
-      incCluster <- clusteredData(parentData=incData,clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
-      return(incCluster)
-    } else if(isoDir == 'd' ){
-      decClusterData <- OCDM(DRdata = decData,alpha = alpha,lambda = lambda,phi = phi )
-      decClusterRowNames <- decClusterData$clusterRowNames
-      decClusterNumber <-   decClusterData$clusterNrow
-      decCluster <- clusteredData(parentData=decData,clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
-      return(decCluster)
-    } else {
-      incClusterData <- OCDM(DRdata = incData,alpha = alpha,lambda = lambda,phi = phi )
-      incClusterRowNames <- incClusterData$clusterRowNames
-      incClusterNumber <-   incClusterData$clusterNrow
-      incCluster <- clusteredData(parentData=incData,clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
-      decClusterData <- OCDM(DRdata = decData, alpha = alpha,lambda = lambda,phi = phi )
-      decClusterRowNames <- decClusterData$clusterRowNames
-      decClusterNumber <-   decClusterData$clusterNrow
-      decCluster <- clusteredData(parentData=decData,clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
-      
-      isoMeansClusters <- rbind(incCluster, decCluster)
-      return(isoMeansClusters)
-    }
-    
-  }
-  
-}else{
-    geneData <- data.frame(geneData)        
-    nDose <- repDose(doseData = doseData)
-    if (includeObserved){
-      repincData <- geneData
-      incData <- matrix(NA,nrow=nrow(geneData),ncol=length(unique(doseData)))
-      for(i in 1:nrow(geneData)){
-        i.gene <- as.vector(geneData[i,2:13])
-        incData[i,] <-tapply(  i.gene, doseData, mean)      
-      }
-      # I need to add a function that generate the optimum lambda
-      incClusterData <- OCDMR(repData=repincData ,DRdata = incData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose)
-      incClusterRowNames <- incClusterData$clusterRowNames
-      incClusterNumber <-  incClusterData$clusterNrow
-      incCluster <- clusteredData(parentData=incData,clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
-      return(incCluster)
-    } else {
-      incData <- geneData
-       # I need to add a function that generate the optimum lambda
-      incClusterData <- OCDM(DRdata = incData,alpha = alpha,lambda = lambda,phi = phi )
-      incClusterRowNames <- incClusterData$clusterRowNames
-      incClusterNumber <-   incClusterData$clusterNrow
-      incCluster <- clusteredData(parentData=incData,clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
-      return(incCluster)
-    }
-    
-  }
-}
-
-=======
-      arrayMean <- isoMean(expression, dose) 
-      dirData <- monotoneDirection(geneData = expression, arrayMean = arrayMean,
-          doseData = dose)
-      incData <- data.frame(dirData$incData)
-      decData <- data.frame(dirData$decData)
-      repincData <-data.frame(dirData$obsincData)
-      repdecData <-data.frame(dirData$obsdecData) 
-      nDose <- repDose(doseData = dose)
-      if (includeObserved){
-        if ( isoDir == 'up' ){
-          incClusterData <- OCDMR(repData=repincData ,DRdata = incData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose)
-          incClusterRowNames <- incClusterData$clusterRowNames
-          incClusterNumber <-  incClusterData$clusterNrow
-          incCluster <- clusteredData(parentData=incData,clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
-          return(incCluster)
-        } else if( isoDir == 'down' ){
-          decClusterData <- OCDMR(repData=repdecData ,DRdata = decData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
-          decClusterRowNames <- decClusterData$clusterRowNames
-          decClusterNumber <-   decClusterData$clusterNrow
-          decCluster <- clusteredData(parentData=decData,clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
-          return(decCluster)
-        } else {
-          incClusterData <- OCDMR(repData=repincData ,DRdata = incData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
-          incClusterRowNames <- incClusterData$clusterRowNames
-          incClusterNumber <-   incClusterData$clusterNrow
-          incCluster <- clusteredData(parentData=incData, clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
+      expression <- exprs(expression) 
+      nDose <- repDose(doseData = dose) 
+      if(doseResponse) {     
+        dirData <- monotoneDirection(geneData = expression,
+            doseData = dose)
+        incData <- data.frame(dirData$incData)
+        decData <- data.frame(dirData$decData)
+        repincData <-data.frame(dirData$obsincData)
+        repdecData <-data.frame(dirData$obsdecData) 
+        if (includeObserved){
+          if ( isoDir == 'up' ){
+            incClusterData <- OCDMR(repData=repincData ,DRdata = incData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose)
+            incClusterRowNames <- incClusterData$clusterRowNames
+            incClusterNumber <-  incClusterData$clusterNrow
+            incCluster <- clusteredData(parentData=incData, clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
+            return(incCluster)
+          } else if( isoDir == 'down' ){
+            decClusterData <- OCDMR(repData=repdecData, DRdata = decData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
+            decClusterRowNames <- decClusterData$clusterRowNames
+            decClusterNumber <-   decClusterData$clusterNrow
+            decCluster <- clusteredData(parentData=decData, clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
+            return(decCluster)
+          } else {
+            incClusterData <- OCDMR(repData=repincData ,DRdata = incData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
+            incClusterRowNames <- incClusterData$clusterRowNames
+            incClusterNumber <-   incClusterData$clusterNrow
+            incCluster <- clusteredData(parentData=incData, clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
           
-          decClusterData <- OCDMR(repData=repdecData ,DRdata = decData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
-          decClusterRowNames <- decClusterData$clusterRowNames
-          decClusterNumber <-   decClusterData$clusterNrow
-          decCluster <- clusteredData(parentData=incData,clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
-          isoMeansClusters <- rbind(incCluster,decCluster)
-          return(isoMeansClusters)
-        }
-      } else{
+            decClusterData <- OCDMR(repData=repdecData ,DRdata = decData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose )
+            decClusterRowNames <- decClusterData$clusterRowNames
+            decClusterNumber <-   decClusterData$clusterNrow
+            decCluster <- clusteredData(parentData=incData,clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
+            isoMeansClusters <- rbind(incCluster,decCluster)
+            return(isoMeansClusters)
+          }
+       } else{
         if (isoDir == 'up'){
           incClusterData <- OCDM(DRdata = incData,alpha = alpha,lambda = lambda,phi = phi )
           incClusterRowNames <- incClusterData$clusterRowNames
@@ -344,11 +291,35 @@ setMethod("isoClust",
           decClusterData <- OCDM(DRdata = decData, alpha = alpha, lambda = lambda, phi = phi)
           decClusterRowNames <- decClusterData$clusterRowNames
           decClusterNumber <-   decClusterData$clusterNrow
-          decCluster <- clusteredData(parentData=decData,clusterRowNames = decClusterRowNames,clusterNumber = decClusterNumber,monoDir = 'd')
+          decCluster <- clusteredData(parentData=decData, 
+              clusterRowNames=decClusterRowNames, clusterNumber = decClusterNumber,
+              monoDir = 'd')
           
           isoMeansClusters <- rbind(incCluster, decCluster)
           return(isoMeansClusters)
         }
       }
-    })
->>>>>>> .r14
+    }else{
+    if (includeObserved){
+      repincData <- expression
+      incData <- matrix(NA,nrow=nrow(expression),ncol=length(unique(dose)))
+      for(i in 1:nrow(expression)){
+          gene.i <- as.vector(expression[i,])
+          incData[i,] <- tapply(gene.i,dose,mean)
+      }
+      incClusterData <- OCDMR(repData=repincData ,DRdata = incData,alpha = alpha,lambda = lambda,phi = phi,nDose=nDose)
+      incClusterRowNames <- incClusterData$clusterRowNames
+      incClusterNumber <-  incClusterData$clusterNrow
+      incCluster <- clusteredData(parentData=incData, clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
+      return(incCluster)
+    }else{
+     incData <- expression
+     incClusterData <- OCDM(DRdata = incData,alpha = alpha,lambda = lambda,phi = phi )
+     incClusterRowNames <- incClusterData$clusterRowNames
+     incClusterNumber <-   incClusterData$clusterNrow
+     incCluster <- clusteredData(parentData=incData,clusterRowNames = incClusterRowNames,clusterNumber = incClusterNumber,monoDir = 'u')
+     return(incCluster)
+    }
+  
+  } 
+})

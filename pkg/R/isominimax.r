@@ -8,7 +8,7 @@ minmax <- function(tmpMatrix){
 }
 
 
-isominmax <- function(mean.y,invsigma,isoDir){
+isotonicmeans <- function(mean.y,invsigma,isoDir){
 k <- length(mean.y)
 mu.data <- rep(NA,k)
 
@@ -60,23 +60,23 @@ isominmax <- function(compData,doseData){
   doseData2 <- doseData[order(doseData,decreasing=F)]
   isotmp <- rep(NA,nrow(compData2))
   isomeans <- matrix(NA,nrow=nrow(compData2),ncol=length(unique(doseData2)))
-  for(i in 1:nrow(compData)) {
-    exampleminmax <-  compData2[i,]
+  for(i in 1:nrow(compData2)) {
+    exampleminmax <-  as.vector(compData2[i,])
     mean.exampleminmax <- tapply(exampleminmax, doseData2, mean)
     cvar.exampleminmax  <-  var(exampleminmax)
     cinvvar.exampleminmax <- 1/cvar.exampleminmax
     ndose <- tapply(doseData,doseData,length)
     cinvvarmat.exampleminmax  <- diag(cinvvar.exampleminmax,nrow=length(mean.exampleminmax),ncol=length(mean.exampleminmax))
-    upcmean.minmax <- isominmax(mean.y=mean.exampleminmax,invsigma=cinvvarmat.exampleminmax,isoDir ="up")
-    downcmean.minmax <- isominmax(mean.y=mean.exampleminmax,invsigma=cinvvarmat.exampleminmax,isoDir ="dn")
+    upcmean.minmax <- isotonicmeans(mean.y=mean.exampleminmax,invsigma=cinvvarmat.exampleminmax,isoDir ="up")
+    downcmean.minmax <- isotonicmeans(mean.y=mean.exampleminmax,invsigma=cinvvarmat.exampleminmax,isoDir ="dn")
 
     likelihoodmu.dose <-  rep(mean.exampleminmax[1],ndose[1])
     upmu.dose <-  rep(upcmean.minmax[1],ndose[1])
     downmu.dose <-  rep(downcmean.minmax[1],ndose[1])
-    for(i in 2:length(mean.exampleminmax)){
-      likelihoodmu.dose <- c(likelihoodmu.dose,rep(mean.exampleminmax[i],ndose[i]))
-      upmu.dose <-  c(upmu.dose,rep(upcmean.minmax[i],ndose[i]))
-      downmu.dose <-  c(downmu.dose,rep(downcmean.minmax[i],ndose[i]))
+    for(j in 2:length(mean.exampleminmax)){
+      likelihoodmu.dose <- c(likelihoodmu.dose,rep(mean.exampleminmax[j],ndose[j]))
+      upmu.dose <-  c(upmu.dose,rep(upcmean.minmax[j],ndose[j]))
+      downmu.dose <-  c(downmu.dose,rep(downcmean.minmax[j],ndose[j]))
     }
 
     nullvar <- sum((exampleminmax - likelihoodmu.dose)^2)
@@ -95,3 +95,4 @@ isominmax <- function(compData,doseData){
     names(outtmp) <-c("Direction","isomeans")
     return(outtmp)
 }
+
