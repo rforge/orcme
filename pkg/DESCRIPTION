@@ -8,6 +8,5 @@ Maintainer: Adetayo Kasim <adetayo.kasim@uhasselt.be>
 Description: This package provides clustering of genes with similar 
   dose response (or time course) profiles. It implements the method 
   described by Kasim et al. (2008) [submitted].
-Depends: IsoGene
 License: GPL-3
 LazyLoad: yes
