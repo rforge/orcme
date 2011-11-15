@@ -1,1 +1,1 @@
-export(isoClust, OCDM, OCDMR)
+export(monotoneDirection, ORCME, plotCluster, plotIsomeans, plotLambda, resampleORCME)

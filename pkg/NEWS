@@ -1,4 +1,5 @@
-0.0-6
+1.0	o the library was changed significantly to correspond with the book: Modeling Dose-response Microarray Data in Early Drug
+Development Experiments With R0.0-6
 	o fixed rownames (Tine Casneuf)
 0.0-5
 	o check that dose is character of lenght one 
