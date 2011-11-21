@@ -1,6 +1,6 @@
 \name{resampleORCME}
 \alias{resampleORCME}
-\title{Estimation of the proportion of the heterogeneity in the observed data for clustering. }
+\title{Estimation of the proportion of the heterogeneity in the observed data for clustering}
 
 
 \description{
@@ -16,7 +16,7 @@ resampleORCME(clusteringData,lambdaVector)
     corresponding to time points or different doses}
   \item{lambdaVector}{vector of assumed proportions of of heterogeneity of the observed data, 
     it ranges between 0 and 1. A lambda value of 1 considers the observed data as a 
-    cluster and lambda value of 0 finds every possible pattern within the data.} 
+    cluster and lambda value of 0 finds every possible pattern within the data} 
 }
 
 \value{
@@ -29,18 +29,18 @@ resampleORCME(clusteringData,lambdaVector)
 
 
 \references{
-  Cheng, Y. and Church, G. M. (2000). Biclustering of expression data. In:
+Lin D., Shkedy Z., Yekutieli D., Amaratunga D., and Bijnens, 
+L. (editors). (2012) Modeling Dose-response Microarray
+Data in Early   Drug Development Experiments Using 
+R. Springer.
+
+Cheng, Y. and Church, G. M. (2000). Biclustering of expression data. In:
      Proceedings of the Eighth International Conference on Intelligent Systems for
      Molecular Biology, 1, 93-103.
-   
-  Kasim, A. \emph{et al.} (2008). Order-restricted clustering for dose-response microarray
-    experiments, submitted.
-
-
-
 }
 
-\author{Adetayo Kasim, Tobias Verbeke, Martin Otava}
+
+\author{Adetayo Kasim, Martin Otava and Tobias Verbeke}
 
 \seealso{\code{\link{ORCME}}, \code{\link{plotLambda}}}
 

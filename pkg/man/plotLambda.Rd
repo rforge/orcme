@@ -1,9 +1,9 @@
 \name{plotLambda}
 \alias{plotLambda}
-\title{Plot the variaty of the properties dependent on the proportion of heterogeneity in observed data set.}
+\title{Plot the variaty of the properties dependent on the proportion of heterogeneity in observed data set}
 
 \description{
-  This function provides the plots of the dependency of the variety of properties on the proportion of heterogeneity in observed data set. It is not using the clustering as simple input, but it is also computing additional properties. The function can plot within cluster sum of squares, number of cluster, penalized within cluster sum of squares, Calsanzik and Harabasx index and Hartigan index
+  This function provides the plots of the dependency of the variety of properties on the proportion of heterogeneity in observed data set. It is not using the clustering as simple input, but it is also computing additional properties. The function can plot within cluster sum of squares, number of cluster, penalized within cluster sum of squares, Calsanzik and Harabasx index and Hartigan index.
 }
 
 \usage{
@@ -17,19 +17,22 @@
 
 
 \value{
-  A plot of one of the properties mentioned above dependent on the proportion of heterogeneity. The confidence intervals are plotted instead of the point estimate.
+  A plot of one of the properties mentioned above dependent on the proportion of heterogeneity. The confidence intervals are plotted instead of the point estimates.
 }
 
 \references{
-  Cheng, Y. and Church, G. M. (2000). Biclustering of expression data. In:
+Lin D., Shkedy Z., Yekutieli D., Amaratunga D., and Bijnens, 
+L. (editors). (2012) Modeling Dose-response Microarray
+Data in Early   Drug Development Experiments Using 
+R. Springer.
+
+Cheng, Y. and Church, G. M. (2000). Biclustering of expression data. In:
      Proceedings of the Eighth International Conference on Intelligent Systems for
      Molecular Biology, 1, 93-103.
-   
-  Kasim, A. \emph{et al.} (2008). Order-restricted clustering for dose-response microarray
-    experiments, submitted. % TODO complete reference
+
 }
 
-\author{Adetayo Kasim, Tobias Verbeke}
+\author{Adetayo Kasim, Martin Otava and  Tobias Verbeke}
 
 \seealso{\code{\link{ORCME}}, \code{\link{resampleORCME}}}
 

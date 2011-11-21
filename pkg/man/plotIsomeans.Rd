@@ -18,20 +18,22 @@ plotIsomeans(monoData, obsData, doseData, geneIndex)
 }
 
 \value{
-  Plot of the data points and the isotonic means for each dose with the isotonic regressin curve.
+  Plot of the data points and the isotonic means for each dose with the isotonic regression curve.
 
 }
 
 \references{
-  Cheng, Y. and Church, G. M. (2000). Biclustering of expression data. In:
+Lin D., Shkedy Z., Yekutieli D., Amaratunga D., and Bijnens, 
+L. (editors). (2012) Modeling Dose-response Microarray
+Data in Early Drug Development Experiments Using 
+R. Springer.
+
+Cheng, Y. and Church, G. M. (2000). Biclustering of expression data. In:
      Proceedings of the Eighth International Conference on Intelligent Systems for
      Molecular Biology, 1, 93-103.
-   
-  Kasim, A. \emph{et al.} (2008). Order-restricted clustering for dose-response microarray
-    experiments, submitted. % TODO complete reference
 }
 
-\author{Adetayo Kasim, Tobias Verbeke}
+\author{Adetayo Kasim, Martin Otava and Tobias Verbeke}
 
 \seealso{\code{\link{ORCME}}, \code{\link{monotoneDirection}}}
 
@@ -42,7 +44,7 @@ plotIsomeans(monoData, obsData, doseData, geneIndex)
   dirData <- monotoneDirection(geneData = geneData,doseData = doseData)
   incData <- as.data.frame(dirData$incData)
   obsIncData <- as.data.frame(dirData$obsincData)
-
+  
   ## gene-specific profile plot
   plotIsomeans(monoData=incData,obsData=obsIncData,doseData=
   doseData,geneIndex=10)

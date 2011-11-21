@@ -13,7 +13,7 @@ ORCME(DRdata,lambda,phi)
 }
 
 \arguments{
-  \item{DRdata}{the microarray data with rows corresponding to genes and columns 
+  \item{DRdata}{matrix of a microarray data with rows corresponding to genes and columns 
     corresponding to time points or different doses}
   \item{lambda}{assumed proportion of coherence relative to the observed data, 
     it ranges between 0 and 1. A lambda value of 1 considers the observed data as a 
@@ -22,20 +22,22 @@ ORCME(DRdata,lambda,phi)
 }
 
 \value{
-{the matrix of classification into clusters: each row represents one gene and columns found clusters. The matrix consist of the Booleans values, in each row there is only one of them TRUE which means that the gene was classified into the respective gene.}
+{The matrix of classification into clusters: each row represents one gene and columns found clusters. The matrix consist of the Booleans values, in each row there is only one of them TRUE which means that the gene was classified into the respective cluster.}
 }
 
 
 \references{
-  Cheng, Y. and Church, G. M. (2000). Biclustering of expression data. In:
+Lin D., Shkedy Z., Yekutieli D., Amaratunga D., and Bijnens, 
+L. (editors). (2012) Modeling Dose-response Microarray
+Data in Early   Drug Development Experiments Using 
+R. Springer.
+
+Cheng, Y. and Church, G. M. (2000). Biclustering of expression data. In:
      Proceedings of the Eighth International Conference on Intelligent Systems for
      Molecular Biology, 1, 93-103.
-   
-  Kasim, A. \emph{et al.} (2008). Order-restricted clustering for dose-response microarray
-    experiments, submitted.
 }
 
-\author{Adetayo Kasim, Tobias Verbeke}
+\author{Adetayo Kasim, Martin Otava and Tobias Verbeke}
 
 \seealso{\code{\link{monotoneDirection}}, \code{\link{plotIsomeans}}}
 

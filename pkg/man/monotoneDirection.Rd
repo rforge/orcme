@@ -1,6 +1,6 @@
 \name{monotoneDirection}
 \alias{monotoneDirection}
-\title{The isotonic means for the decreasing or increasing trend}
+\title{The monotone means under increasing/decreasing trend}
 
 
 \description{
@@ -12,7 +12,7 @@ monotoneDirection(geneData, doseData)
 }
 
 \arguments{
-  \item{geneData}{gene expression for all genes}
+  \item{geneData}{gene expression matrix for all genes}
   \item{doseData}{indicates the dose levels} 
 }
 
@@ -23,25 +23,25 @@ monotoneDirection(geneData, doseData)
     (indicated by "up") or decreasing (indicated by "dn") trend.}
   \item{incData}{isotonic means with respect to dose for those genes that were classified as following the increasing trend.}
   \item{decData}{isotonic means with respect to dose for those genes that were classified as following the decreasing trend.}
-  \item{obsincData}{observed gene expression for those genes that were classified as following the increasing trend.}
-  \item{obsdecData}{observed gene expression for those genes that were classified as following the decreasing trend.}
+  \item{obsincData}{observed gene expression matrix for those genes that were classified as following the increasing trend.}
+  \item{obsdecData}{observed gene expression matrix for those genes that were classified as following the decreasing trend.}
   \item{arrayMean}{isotonic means with respect to dose for all genes.}
 }
 
 
 \references{
-  Lin D., Shkedy Z., Yekutieli D., Amaratunga D., and Bijnens, 
+Lin D., Shkedy Z., Yekutieli D., Amaratunga D., and Bijnens, 
 L. (editors). (2012) Modeling Dose-response Microarray
-Data in Early   Drug Development Experiments Using 
+Data in Early Drug Development Experiments Using 
 R. Springer.
 
-  Cheng, Y. and Church, G. M. (2000). Biclustering of expression data. In:
+Cheng, Y. and Church, G. M. (2000). Biclustering of expression data. In:
      Proceedings of the Eighth International Conference on Intelligent Systems for
      Molecular Biology, 1, 93-103.
 
 }
 
-\author{Adetayo Kasim, Tobias Verbeke}
+\author{Adetayo Kasim, Martin Otava and Tobias Verbeke}
 
 \seealso{\code{\link{ORCME}}, \code{\link{plotIsomeans}}}
 

@@ -15,11 +15,11 @@ plotCluster(DRdata, doseData, ORCMEoutput, clusterID, zeroMean=FALSE, xlabel, yl
   \item{DRdata}{the microarray data with rows corresponding to genes and columns 
     corresponding to time points or different doses}
   \item{doseData}{indicates the dose levels} 
-  \item{ORCMEoutput}{the matrix of classification into clusters: each row represents one gene and columns found clusters. The matrix consist of the Booleans values, in each row there is only one of them TRUE which means that the gene was classified into the respective gene.}
-  \item{clusterID}{id of the cluster to be plotted.}
-  \item{zeroMean}{if TRUE, it centers the gene profiles around the gene-specific means, default is FALSE.}
-  \item{xlabel}{a title for the x axis.}
-  \item{ylabel}{a title for the y axis.}
+  \item{ORCMEoutput}{the matrix of classification into clusters: each row represents one gene and columns found clusters. The matrix consist of the Booleans values, in each row there is only one of them TRUE which means that the gene was classified into the respective gene}
+  \item{clusterID}{id of the cluster to be plotted}
+  \item{zeroMean}{if TRUE, it centers the gene profiles around the gene-specific means, default is FALSE}
+  \item{xlabel}{a title for the x axis}
+  \item{ylabel}{a title for the y axis}
 }
 
 
@@ -29,15 +29,17 @@ plotCluster(DRdata, doseData, ORCMEoutput, clusterID, zeroMean=FALSE, xlabel, yl
 
 
 \references{
-  Cheng, Y. and Church, G. M. (2000). Biclustering of expression data. In:
+Lin D., Shkedy Z., Yekutieli D., Amaratunga D., and Bijnens, 
+L. (editors). (2012) Modeling Dose-response Microarray
+Data in Early   Drug Development Experiments Using 
+R. Springer.
+
+Cheng, Y. and Church, G. M. (2000). Biclustering of expression data. In:
      Proceedings of the Eighth International Conference on Intelligent Systems for
      Molecular Biology, 1, 93-103.
-   
-  Kasim, A. \emph{et al.} (2008). Order-restricted clustering for dose-response microarray
-    experiments, submitted. % TODO complete reference
 }
 
-\author{Adetayo Kasim, Tobias Verbeke}
+\author{Adetayo Kasim, Martin Otava and Tobias Verbeke}
 
 \seealso{\code{\link{ORCME}}, \code{\link{plotIsomeans}}}
 
