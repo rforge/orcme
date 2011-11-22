@@ -51,7 +51,7 @@ Cheng, Y. and Church, G. M. (2000). Biclustering of expression data. In:
   dirData <- monotoneDirection(geneData = geneData,doseData = doseData)
   incData <- as.data.frame(dirData$incData)
  
-  lambdaVector <- seq(0.05,0.95,0.05)
+  lambdaVector <- c(0.05,0.50,0.95)
   
   resampleORCME(clusteringData=incData, lambdaVector=lambdaVector)
 }
