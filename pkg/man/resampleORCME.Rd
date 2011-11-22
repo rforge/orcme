@@ -53,7 +53,9 @@ Cheng, Y. and Church, G. M. (2000). Biclustering of expression data. In:
  
   lambdaVector <- c(0.05,0.50,0.95)
   
+  \donttest{
   resampleORCME(clusteringData=incData, lambdaVector=lambdaVector)
+  }
 }
 
 \keyword{cluster}
