@@ -1,18 +1,35 @@
 \name{doseData}
+
 \alias{doseData}
+
 \docType{data}
+
+
 \title{Dose Data Example}
+
+
 \description{
-  Simulated dose data; a vector of length 20
-  with 4 observations for each of 5 doses.
+Dose data; a vector of length 12
+ with 3 observations for each of 4 doses.
 }
+
+
 \usage{data(doseData)}
+
+
 \format{
   The format is:
- num [1:20] 1 1 1 1 2 2 2 2 3 3 ...
+ num [1:12] 1 1 1 2 2 2 3 3 ...
 }
+
+
 \examples{
-  data(doseData)
-  doseData
+
+data(doseData)
+  
+doseData
+
 }
+
+
 \keyword{datasets}
