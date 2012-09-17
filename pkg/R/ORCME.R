@@ -1,8 +1,15 @@
 `addRows` <- function(originalData, clusteredData) {
 
   HCluster <- meanSquaredResidue(clusteredData)$`overallHvalue `
-  ResidualsData <- meanSquaredResidue(originalData)$`geneResiduals `
+  
+  overallMeanCluster <- sum(clusteredData) / (nrow(clusteredData) * ncol(clusteredData))
+  doseMeansCluster <- colSums(clusteredData) / nrow(clusteredData)
+  newGenesMeans <- rowSums(originalData) / ncol(originalData)
+  list <- seq(1:nrow(originalData))
+  ResidualsData <- unlist(lapply(list, function (x) mean(((originalData[x,] - newGenesMeans[x]) - (doseMeansCluster - overallMeanCluster))^2)))
+  
   geneAddition <- ResidualsData < HCluster
+  geneAddition <- geneAddition[!(rownames(originalData)[geneAddition] %in% row.names(clusteredData))] 
 
   if(sum(geneAddition)!=0){
        addData <- originalData[geneAddition, ]
