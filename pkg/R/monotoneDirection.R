@@ -82,8 +82,10 @@ isominmax <- function(compData,doseData){
     nullvar <- sum((exampleminmax - likelihoodmu.dose)^2)
     upvar <- sum((exampleminmax -  upmu.dose)^2)
     dnvar <- sum((exampleminmax - downmu.dose)^2)
-    uplike <- (nullvar-upvar)/nullvar
-    dnlike <- (nullvar-dnvar)/nullvar
+    #uplike <- (nullvar-upvar)/nullvar
+    #dnlike <- (nullvar-dnvar)/nullvar
+    uplike <- (nullvar-upvar)
+    dnlike <- (nullvar-dnvar)
     isotmp[i] <- c("up","dn")[ c(uplike,dnlike) == max(c(uplike,dnlike))]
     if(isotmp[i]=="up"){
       isomeans[i,]  <-  upcmean.minmax
