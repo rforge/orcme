@@ -55,48 +55,50 @@ for(i in k:1){
   return( mu.data)
 }
 
-isominmax <- function(compData,doseData){
-  compData2 <- compData[,order(doseData,decreasing=F)]
-  doseData2 <- doseData[order(doseData,decreasing=F)]
-  isotmp <- rep(NA,nrow(compData2))
-  isomeans <- matrix(NA,nrow=nrow(compData2),ncol=length(unique(doseData2)))
-  for(i in 1:nrow(compData2)) {
-    exampleminmax <-  as.vector(compData2[i,])
-    mean.exampleminmax <- tapply(exampleminmax, doseData2, mean)
-    cvar.exampleminmax  <-  var(exampleminmax)
-    cinvvar.exampleminmax <- 1/cvar.exampleminmax
-    ndose <- tapply(doseData,doseData,length)
-    cinvvarmat.exampleminmax  <- diag(cinvvar.exampleminmax,nrow=length(mean.exampleminmax),ncol=length(mean.exampleminmax))
-    upcmean.minmax <- isotonicmeans(mean.y=mean.exampleminmax,invsigma=cinvvarmat.exampleminmax,isoDir ="up")
-    downcmean.minmax <- isotonicmeans(mean.y=mean.exampleminmax,invsigma=cinvvarmat.exampleminmax,isoDir ="dn")
-
-    likelihoodmu.dose <-  rep(mean.exampleminmax[1],ndose[1])
-    upmu.dose <-  rep(upcmean.minmax[1],ndose[1])
-    downmu.dose <-  rep(downcmean.minmax[1],ndose[1])
-    for(j in 2:length(mean.exampleminmax)){
-      likelihoodmu.dose <- c(likelihoodmu.dose,rep(mean.exampleminmax[j],ndose[j]))
-      upmu.dose <-  c(upmu.dose,rep(upcmean.minmax[j],ndose[j]))
-      downmu.dose <-  c(downmu.dose,rep(downcmean.minmax[j],ndose[j]))
-    }
-
-    nullvar <- sum((exampleminmax - likelihoodmu.dose)^2)
-    upvar <- sum((exampleminmax -  upmu.dose)^2)
-    dnvar <- sum((exampleminmax - downmu.dose)^2)
-    #uplike <- (nullvar-upvar)/nullvar
-    #dnlike <- (nullvar-dnvar)/nullvar
-    uplike <- (nullvar-upvar)
-    dnlike <- (nullvar-dnvar)
-    isotmp[i] <- c("up","dn")[ c(uplike,dnlike) == max(c(uplike,dnlike))]
-    if(isotmp[i]=="up"){
-      isomeans[i,]  <-  upcmean.minmax
-    } else{
-      isomeans[i,]  <-  downcmean.minmax
-    }
-  }
-    outtmp <- list(isotmp,isomeans)
-    names(outtmp) <-c("Direction","isomeans")
-    return(outtmp)
+isominmax <- function (compData, doseData) 
+{
+	compData2 <- compData[, order(doseData, decreasing = F)]
+	doseData2 <- doseData[order(doseData, decreasing = F)]
+	isotmp <- rep(NA, nrow(compData2))
+	isomeans <- matrix(NA, nrow = nrow(compData2), ncol = length(unique(doseData2)))
+	for (i in 1:nrow(compData2)) {
+		ndose <- tapply(doseData, doseData, length)
+		exampleminmax <- as.vector(compData2[i, ])
+		mean.exampleminmax <- tapply(exampleminmax, doseData2, mean)
+		upcmean.minmax <- pava(mean.exampleminmax, 
+				decreasing=FALSE, long.out=FALSE, stepfun=FALSE)
+		downcmean.minmax <- pava(mean.exampleminmax, 
+				decreasing=TRUE, long.out=FALSE, stepfun=FALSE)
+		
+		likelihoodmu.dose <- rep(mean.exampleminmax[1], ndose[1])
+		upmu.dose <- rep(upcmean.minmax[1], ndose[1])
+		downmu.dose <- rep(downcmean.minmax[1], ndose[1])
+		for (j in 2:length(mean.exampleminmax)) {
+			likelihoodmu.dose <- c(likelihoodmu.dose, rep(mean.exampleminmax[j], 
+							ndose[j]))
+			upmu.dose <- c(upmu.dose, rep(upcmean.minmax[j], 
+							ndose[j]))
+			downmu.dose <- c(downmu.dose, rep(downcmean.minmax[j], 
+							ndose[j]))
+		}
+		nullvar <- sum((exampleminmax - likelihoodmu.dose)^2)
+		upvar <- sum((exampleminmax - upmu.dose)^2)
+		dnvar <- sum((exampleminmax - downmu.dose)^2)
+		uplike <- (nullvar - upvar)
+		dnlike <- (nullvar - dnvar)
+		isotmp[i] <- c("up", "dn")[c(uplike, dnlike) == max(c(uplike, 
+								dnlike))]
+		if (isotmp[i] == "up") {
+			isomeans[i, ] <- upcmean.minmax
+		}  else {
+			isomeans[i, ] <- downcmean.minmax
+		}
+	}
+	outtmp <- list(isotmp, isomeans)
+	names(outtmp) <- c("Direction", "isomeans")
+	return(outtmp)
 }
+
 
 
 `monotoneDirection` <- function(geneData, doseData){
