@@ -9,7 +9,7 @@
 }
 
 \usage{
-ORCME(DRdata,lambda,phi)
+ORCME(DRdata, lambda, phi, robust=FALSE)
 }
 
 \arguments{
@@ -19,17 +19,18 @@ ORCME(DRdata,lambda,phi)
     it ranges between 0 and 1. A lambda value of 1 considers the observed data as a 
     cluster and lambda value of 0 finds every possible pattern within the data.} 
   \item{phi}{minimum number of genes in a cluster} 
+  \item{robust}{logical variable that determines, if algorithm uses robust version based on median polish and 
+  absolute values, instead of mean square error. Default is \code{FALSE}.} 
 }
 
 \value{
-{The matrix of classification into clusters: each row represents one gene and columns found clusters. The matrix consist of the Booleans values, in each row there is only one of them TRUE which means that the gene was classified into the respective cluster.}
+{The matrix of classification into clusters: each row represents one gene and columns found clusters. The matrix consist of the Booleans values, in each row there is only one of them \code{TRUE} which means that the gene was classified into the respective cluster.}
 }
 
 
 \references{
 Lin D., Shkedy Z., Yekutieli D., Amaratunga D., and Bijnens, 
-L. (editors). (2012) Modeling Dose-response Microarray
-Data in Early   Drug Development Experiments Using 
+L. (editors). (2012) Modeling Dose-response Microarray Data in EarlyDrug Development Experiments Using 
 R. Springer.
 
 Cheng, Y. and Church, G. M. (2000). Biclustering of expression data. In:
@@ -47,8 +48,15 @@ Cheng, Y. and Church, G. M. (2000). Biclustering of expression data. In:
 
   dirData <- monotoneDirection(geneData = geneData,doseData = doseData)
   incData <- as.data.frame(dirData$incData)
- 
-  ORCME(DRdata=incData,lambda=0.15,phi=2)
+  
+  \donttest{
+  print(orcme <- ORCME(DRdata=incData,lambda=0.15,phi=2))
+  orcmeRobust <- ORCME(DRdata=incData,lambda=0.15,phi=2, robust=TRUE)
+  
+  # number of genes within cluster
+  colSums(orcme)
+  colSums(orcmeRobust)
+  }
 }
 
 \keyword{cluster}

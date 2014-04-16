@@ -8,7 +8,7 @@
 }
 
 \usage{
-resampleORCME(clusteringData,lambdaVector)
+resampleORCME(clusteringData, lambdaVector, robust=FALSE)
 }
 
 \arguments{
@@ -17,6 +17,8 @@ resampleORCME(clusteringData,lambdaVector)
   \item{lambdaVector}{vector of assumed proportions of of heterogeneity of the observed data, 
     it ranges between 0 and 1. A lambda value of 1 considers the observed data as a 
     cluster and lambda value of 0 finds every possible pattern within the data} 
+  \item{robust}{logical variable that determines, if algorithm uses robust version based on median polish and 
+  absolute values, instead of mean square error. Default is \code{FALSE}.} 
 }
 
 \value{
@@ -54,7 +56,7 @@ Cheng, Y. and Church, G. M. (2000). Biclustering of expression data. In:
   lambdaVector <- c(0.05,0.50,0.95)
   
   \donttest{
-  resampleORCME(clusteringData=incData, lambdaVector=lambdaVector)
+  resampleORCME(clusteringData=incData, lambdaVector=lambdaVector, robust=FALSE)
   }
 }
 

@@ -8,7 +8,8 @@
 }
 
 \usage{
-plotCluster(DRdata, doseData, ORCMEoutput, clusterID, zeroMean=FALSE, xlabel, ylabel)
+plotCluster(DRdata, doseData, ORCMEoutput, clusterID, 
+zeroMean=FALSE, xlabel, ylabel, main="")
 }
 
 \arguments{
@@ -20,6 +21,7 @@ plotCluster(DRdata, doseData, ORCMEoutput, clusterID, zeroMean=FALSE, xlabel, yl
   \item{zeroMean}{if TRUE, it centers the gene profiles around the gene-specific means, default is FALSE}
   \item{xlabel}{a title for the x axis}
   \item{ylabel}{a title for the y axis}
+  \item{main}{an overall title for the plot}
 }
 
 
