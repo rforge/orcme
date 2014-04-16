@@ -1,5 +1,10 @@
-1.2.1	o isominmax within monotoneDirection changed, so procedure works for zero variability within dose as well1.2	o bug in clustering process was fixed (the performance of algorithm should slightly improve)1.1	o the artificial data set was replaced by larger real data set, due to confidentiality just part of the original data set was used1.0	o the library was changed significantly to correspond with the book: Modeling Dose-response Microarray Data in Early Drug
-Development Experiments With R0.0-6
+1.2	o isominmax within monotoneDirection changed, original code was replaced by pava from Iso package; such a change decresed computational time to 40%
+	o robust option based on median polish was added to ORCME
+1.2.1	o isominmax within monotoneDirection changed, so procedure works for zero variability within dose as well
+1.2	o bug in clustering process was fixed (the performance of algorithm should slightly improve)
+1.1	o the artificial data set was replaced by larger real data set, due to confidentiality just part of the original data set was used
+1.0	o the library was changed significantly to correspond with the book: Modeling Dose-response Microarray Data in Early Drug Development Experiments With R
+0.0-6
 	o fixed rownames (Tine Casneuf)
 0.0-5
 	o check that dose is character of lenght one 
