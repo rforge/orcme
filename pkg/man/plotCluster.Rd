@@ -49,13 +49,14 @@ Cheng, Y. and Church, G. M. (2000). Biclustering of expression data. In:
   data(doseData)
   data(geneData)
 
+  \donttest{
   dirData <- monotoneDirection(geneData = geneData,doseData = doseData)
   incData <- as.data.frame(dirData$incData)
   ORCMEoutput <- ORCME(DRdata=incData,lambda=0.15,phi=2)
   
   plotCluster(DRdata=incData,doseData=doseData, ORCMEoutput=ORCMEoutput,
   clusterID=4,zeroMean=FALSE, xlabel="Dose",ylabel="Gene Expression")
-
+  }
 }
 
 \keyword{cluster}
