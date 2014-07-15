@@ -1,4 +1,5 @@
-1.2	o isominmax within monotoneDirection changed, original code was replaced by pava from Iso package; such a change decresed computational time to 40%
+2.0.1	o typo in plotCluster corrected: did not plot properly, when doses were not sorted beforehand
+2.0	o isominmax within monotoneDirection changed, original code was replaced by pava from Iso package; such a change decresed computational time to 40%
 	o robust option based on median polish was added to ORCME
 1.2.1	o isominmax within monotoneDirection changed, so procedure works for zero variability within dose as well
 1.2	o bug in clustering process was fixed (the performance of algorithm should slightly improve)
