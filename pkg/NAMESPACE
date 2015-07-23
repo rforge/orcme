@@ -1,2 +1,4 @@
 export(monotoneDirection, ORCME, plotCluster, plotIsomeans, plotLambda, resampleORCME)
 importFrom(Iso, pava)
+importFrom("graphics", "axis", "lines", "plot", "points")
+importFrom("stats", "medpolish", "sd")
